@@ -1,6 +1,6 @@
 class Garden:
 '''
-Define the plant dictionary for reference to placement chart.
+Define the plant dictionary and student list for reference to placement chart.
 '''
 	plant_dic = {
 		"C": "Clover",
@@ -13,10 +13,11 @@ Define the plant dictionary for reference to placement chart.
 
     def __init__(self, diagram, students=students):
         self.diagram = diagram.splitlines("/n")
-		self.students = students
+		self.students = sorted(students)
 
 	def plants(self,students):
-		student_names = sorted([x[0] for x in self.students])
+		student_names = [x[0] for x in self.students]
+		
 		
 
 		#Takes in student name
