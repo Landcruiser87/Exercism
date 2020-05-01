@@ -1,0 +1,8 @@
+{
+	"python.pythonPath": "C:\\Users\\andyh\\Anaconda3\\envs\\miner\\python.exe",
+	"python.testing.pytestArgs": [
+        "."
+    ],
+	"python.testing.pytestEnabled": true,
+	"git.ignoreLimitWarning": true
+}
