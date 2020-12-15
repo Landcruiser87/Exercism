@@ -1,36 +1,48 @@
 class Garden():
-# '''
-# Define the plant dictionary and student list for reference to placement chart.
+'''
+Returns plant's position on thie window sill
+Set up Global vars for plant_dic and students
+'''
 
-# First splits the diagram into 2 rows
-# Sorts the students alphabetically (As that is how they're assigned)
-# '''
-plant_dic = {
-		"C": "Clover",
-		"G": "Grass",
-		"R": "Radishes",
-		"V": "Violets"}
+	plant_dic = {
+				"C": "Clover",
+				"G": "Grass",
+				"R": "Radishes",
+				"V": "Violets"}
 
-students = ['Alice','Bob','Charlie','David',
-				'Eve','Fred','Ginny','Harriet',
-				'Ileana','Joseph','Kincaid','Larry']
+	students = ['Alice','Bob','Charlie','David',
+					'Eve','Fred','Ginny','Harriet',
+					'Ileana','Joseph','Kincaid','Larry']
 
 	def __init__(self, diagram, students=students):
-		self.diagram = diagram.splitlines("/n")
+		'''
+		Split the string
+		Sorts students
+		Calls plant function to get plant name for student
+		'''
+		self.diagram = diagram.splitlines()
 		self.students = sorted(students)
 		self.plants(diagram, students)
 
 	def plants(self,diagram, students):
-		for x, student in enumerate(students)
+		'''
+		unpacks students
+		Determines start and end position of student
+		Joins the rows of data
+		Looks up the plants used by student. 
+		returns plant names.
+		'''
+		for x, student in enumerate(students):
 			start = 2 * x
 			end = start + 2
 			plants = ''.join(row[start:end] for row in diagram)
-			self.student = [self.plant_dic[p] for p in plants]
+			return [self.plant_dic[p] for p in plants]
 		
 		
 
 		#Takes in student name
 		#returns a list of plnats that student has planted. 
+
 
 import unittest
 
@@ -56,6 +68,3 @@ class KindergartenGardenTest(unittest.TestCase):
 
 if __name__ == "__main__":
 	unittest.main()
-
-
-
