@@ -1,9 +1,9 @@
 class School:
     def __init__(self):
-        pass
-
+        self.db = []
+		
     def add_student(self, name, grade):
-        pass
+        self.db.append()
 
     def roster(self):
         pass
