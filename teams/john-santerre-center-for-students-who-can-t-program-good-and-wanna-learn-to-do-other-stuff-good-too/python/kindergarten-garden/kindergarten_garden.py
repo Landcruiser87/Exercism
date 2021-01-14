@@ -8,17 +8,17 @@ class Garden():
 		students: list of student names
 	'''
 
-	plant_dic = {
+	PLANT_DIC = {
 				"C": "Clover",
 				"G": "Grass",
 				"R": "Radishes",
 				"V": "Violets"}
 
-	students = ['Alice','Bob','Charlie','David',
+	STUDENTS = ['Alice','Bob','Charlie','David',
 					'Eve','Fred','Ginny','Harriet',
 					'Ileana','Joseph','Kincaid','Larry']
 
-	def __init__(self, diagram, students=students):
+	def __init__(self, diagram, students=STUDENTS):
 		'''
 		Split the input string
 		Sorts students
@@ -43,4 +43,4 @@ class Garden():
 		'''
 		x = self.students.index(student)
 		plants = ''.join(row[2*x:2*x+2] for row in self.diagram)
-		return [self.plant_dic[p] for p in plants]
+		return [self.PLANT_DIC[p] for p in plants]
