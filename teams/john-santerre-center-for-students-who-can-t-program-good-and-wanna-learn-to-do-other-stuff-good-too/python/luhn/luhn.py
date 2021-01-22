@@ -22,6 +22,7 @@ class Luhn:
 		#Reverse the number to start from the right. 
 		self.card_num = self.card_num[::-1]
 		#List comp to extract the luhn numbers from the even numbers in string
+		#with qualifying conditions according to exercise.
 		luhn = sum([int(x)*2 if int(x)*2 < 9 else (int(x)*2 - 9) for x in self.card_num[1::2]])
 		#Now sum the odd numbers 
 		odd_nums = sum([int(x) for x in self.card_num[0::2]])
