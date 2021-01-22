@@ -33,6 +33,7 @@ def equilateral(sides):
 	Returns:
 		[boolean]: [if length of unique values equal integer for triangle type]
 	"""	
+	
 	return len(set(sides)) == 1
 
 @tri_validate
@@ -50,7 +51,6 @@ def isosceles(sides):
 		[boolean]: [if length of unique values equal variable for triangle type]
 	"""
 
-
 	return len(set(sides)) < 3
 
 @tri_validate
@@ -64,11 +64,6 @@ def scalene(sides):
 	Returns:
 		[type]: [description]
 	"""
-	'''
-	Args:
-		sides ([list]): [list of triangle lengths]
-	Returns:
-		[boolean]: [if length of unique values equal variable for triangle type]
-	'''
+
 	return len(set(sides)) == 3
 

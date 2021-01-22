@@ -7,6 +7,7 @@ def abbreviate(words):
 
 	'''
 	words = ''.join(words.split(','))
+	words.replace("'", " ")
 	words = ''.join(words.split('_'))
 	words = ' '.join(words.split('-'))
 
