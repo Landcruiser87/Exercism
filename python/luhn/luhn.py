@@ -25,6 +25,5 @@ class Luhn:
 		luhn = sum([int(x)*2 if int(x)*2 < 9 else (int(x)*2 - 9) for x in self.card_num[1::2]])
 		#Now sum the odd numbers 
 		odd_nums = sum([int(x) for x in self.card_num[0::2]])
-		#Put em together and divide by 10 to see if its valid
-		luhn = luhn + odd_nums
-		return luhn % 10 == 0
+		#Put em together, divide by 10 and return the boolean. 
+		return (luhn + odd_nums) % 10 == 0
