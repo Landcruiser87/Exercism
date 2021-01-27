@@ -1,5 +1,5 @@
 class Clock:
-	def __init__(self, hour:int, minute:int):
+	def __init__(self, hour: int, minute: int):
 		"""[Clock initialization]
 
 		Args:
