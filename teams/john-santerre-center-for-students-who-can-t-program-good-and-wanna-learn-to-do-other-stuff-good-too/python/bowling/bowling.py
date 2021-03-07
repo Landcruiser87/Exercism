@@ -6,7 +6,8 @@ class BowlingGame:
 		self._roll = []
 	
 	def roll(self, pins:int):
-		"""[This method takes in one throw and validates it]
+		"""[This method takes in one throw and validates it.
+		Also contains logic to navigate the 10th Frame]
 
 		Args:
 			pins (int): [Num of pins knocked down]
@@ -14,7 +15,7 @@ class BowlingGame:
 		#Checks individual pins to make sure range is correct
 		if pins < 0 or pins > 10:
 			raise ValueError('You sit on a throne of lies!  aka. Wrong amount of pins in roll')
-			# raise ValueError('Can\'t have more than 10 pins in one frame')
+
 		#Count the throws
 		_numrolls = len(self._roll)
 		def determineBonus(pins:int, _numrolls:int) -> int:
@@ -30,6 +31,7 @@ class BowlingGame:
 			_bonus = 0
 			#If 10.1 is a strike
 			if self._roll[_numrolls - 2] == 10:
+				#10.2 + 10.3 can't be greater than 10 or 10.2 needs a strike
 				if (self._roll[_numrolls - 1] + pins) <= 10 or self._roll[_numrolls - 1] == 10:
 					_bonus += 2
 				else:
@@ -42,6 +44,10 @@ class BowlingGame:
 				_bonus += 1
 			
 			return _bonus
+
+		# #Stupid single test failure check.  Doesn't work
+		# if _numrolls == 1 and sum(self._rolls) > 10:
+		# 	raise ValueError('Can\'t have more than 10 pins in one frame')
 		
 		#10th Frame check
 		if _numrolls == 20:										 
@@ -68,6 +74,7 @@ class BowlingGame:
 
 	def score(self) -> int:
 		"""[Determines type of score and adds to total score]
+		Functions for each outcome
 		"""
 		_score = 0
 		_frameidx = 0
@@ -100,64 +107,3 @@ class BowlingGame:
 				_frameidx += 2
 
 		return _score
-			
-
-	# def test_a_strike_in_the_last_frame_gets_a_two_roll_bonus_that_is_counted_once(self):
-	# 	rolls = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 7, 1]
-	# 	game = self.roll_new_game(rolls)
-	# 	self.assertEqual(game.score(), 18)
-
-	# def test_should_be_able_to_score_a_game_with_no_strikes_or_spares(self):
-	# 	rolls = [3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6]
-	# 	game = self.roll_new_game(rolls)
-	# 	self.assertEqual(game.score(), 90)
-
-	# def test_cannot_roll_after_bonus_roll_for_spare(self):
-	# 	rolls = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 3, 2]
-	# 	game = self.roll_new_game(rolls)
-	# 	with self.assertRaisesWithMessage(Exception):
-	# 		game.roll(2)
-	
-	# def test_cannot_roll_after_bonus_rolls_for_strike(self):
-	# 	rolls = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 3, 2]
-	# 	game = self.roll_new_game(rolls)
-	# 	with self.assertRaisesWithMessage(Exception):
-	# 		game.roll(2)
-	# # #! Failtown
-	# def test_cannot_roll_if_game_already_has_ten_frames(self):
-	# 	rolls = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-	# 	game = self.roll_new_game(rolls)
-	# 	with self.assertRaisesWithMessage(Exception):
-	# 		game.roll(0)
-
-	# def test_rolls_cannot_score_negative_points(self):
-	# 	rolls = []
-	# 	game = self.roll_new_game(rolls)
-	# 	with self.assertRaisesWithMessage(Exception):
-	# 		game.roll(-1)
-
-	# #! Failtown
-	# def test_the_second_bonus_rolls_after_a_strike_in_the_last_frame_cannot_be_a_strike_if_the_first_one_is_not_a_strike(self):
-	# 	rolls = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 6]
-	# 	game = self.roll_new_game(rolls)
-	# 	with self.assertRaisesWithMessage(Exception):
-	# 		game.roll(10)
-	# #! Failtown
-	# def test_two_bonus_rolls_after_a_strike_in_the_last_frame_cannot_score_more_than_10_points(self):
-	# 	rolls = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 5]
-	# 	game = self.roll_new_game(rolls)
-	# 	with self.assertRaisesWithMessage(Exception):
-	# 		game.roll(6)
-	# #! Failtown
-# 	def test_two_rolls_in_a_frame_cannot_score_more_than_10_points(self):
-# 		rolls = [5]
-# 		game = self.roll_new_game(rolls)
-# 		with self.assertRaisesWithMessage(Exception):
-# 			game.roll(6)
-
-# 	def assertRaisesWithMessage(self, exception):
-# 		return self.assertRaisesRegex(exception, r".+")
-	
-# if __name__ == "__main__":
-# 	unittest.main()
-
