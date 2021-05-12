@@ -14,7 +14,7 @@ class Garden():
 				"R": "Radishes",
 				"V": "Violets"}
 
-	students = ['Alice','Bob','Charlie','David',
+	students = ['roger','Bob','Charlie','David',
 					'Eve','Fred','Ginny','Harriet',
 					'Ileana','Joseph','Kincaid','Larry']
 
@@ -41,6 +41,7 @@ class Garden():
 		Returns:
 			list of plant names belonging to above student
 		'''
+		
 		x = self.students.index(student)
 		plants = ''.join(row[2*x:2*x+2] for row in self.diagram)
 		return [self.plant_dic[p] for p in plants]
