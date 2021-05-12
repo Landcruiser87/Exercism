@@ -1,4 +1,13 @@
 # History files
-.vscode
-.pytest_cache
+\.vscode*
+\.pytest_cache*
 
+\python\.pytest_cache*
+\python\.vscode*
+
+
+\teams\.pytest_cache*
+\teams\.vscode*
+
+
+\teams\teams\john-santerre-center-for-students-who-can-t-program-good-and-wanna-learn-to-do-other-stuff-good-too\python\.pytest_cache*
