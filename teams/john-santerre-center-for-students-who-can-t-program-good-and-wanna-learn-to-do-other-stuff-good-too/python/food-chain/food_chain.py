@@ -1,5 +1,5 @@
 #This is officially the weirdest one of these i've done yet. 
-#I apparently never learned this rhyme as a kid. 
+#I apparently never learned this rhyme.  
 
 ANIMALS = ['fly','spider','bird','cat','dog','goat','cow', 'horse']
 
@@ -29,7 +29,10 @@ def recite(start_verse:int, end_verse:int) -> list:
 	for i in range(start_verse -1, end_verse): 
 		lyrics.append(f"I know an old lady who swallowed a {ANIMALS[i]}.")
 		lyrics.append(f'{VERSE_NEXT_AN[ANIMALS[i]]}')
-
+		if i == 7:
+			#Janky fix for ending song early when she goes for the horse
+			break
+			
 		if i >= 1:
 			x = i
 			while x >= 1:
@@ -38,7 +41,6 @@ def recite(start_verse:int, end_verse:int) -> list:
 					
 					lyrics[-1] = lyrics[-1:][0][:-1] + " that wriggled and jiggled and tickled inside her."
 				x -= 1
-
 			lyrics.append(f"I don't know why she swallowed the fly. Perhaps she'll die.")
 		if start_verse != end_verse:
 			lyrics.append("")
