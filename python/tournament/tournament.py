@@ -1,9 +1,3 @@
-# https://exercism.io/tracks/python/exercises/tournament/solutions/98dba26693524119ad18ca5d990838aa
-# https://exercism.io/tracks/python/exercises/tournament/solutions/06e8b2daa91c4e5fbeae1876e9d0ad7c
-# https://exercism.io/tracks/python/exercises/tournament/solutions/cf348e2078e04d5590c7a3315d984ec1
-# https://exercism.io/tracks/python/exercises/tournament/solutions/12d6187fd53a4613a57f8f213c1588fa
-
-
 class Team(object):
 	"""[Sets the initial values for each team.  Properties are
 	set for MP and P to automatically calculate those values by assigning the
