@@ -35,30 +35,31 @@ def total(basket:list) -> int:
 				#remove that set from the basket into two lists. 
 				#calculate the price of both lists and add to sums list
 
-				groups.append(sum(bsk_sum))
+				groups.append(bsk_sum)
 
 	return min(groups)
 
 def calc_basket(bsk:list) -> int:
-	bsk_sum, bsk_discount, bsk_reg = [], [], []
-	_counts = {i:bsk.count(i) for i in bsk}
-	
-	
+	# bsk_sum, bsk_discount, bsk_reg = [], [], []
+	# _counts = {i:bsk.count(i) for i in bsk}
+	a = list(set(bsk))
+	b = bsk.copy()
 
+	for item in a:
+		b.remove(item)
 	
+	a_total = PRICES[len(a)] - PRICES[len(a)]*DISCOUNT[len(a)-1]
+	b_total = PRICES[len(b)]
 
-	
+	bsk_sum = a_total + b_total
 	
 	#If Different books.  Apply discount to any unique book
 	#if multiple of same book exist (with a separate book)
 	
-
-			
-	
 	return bsk_sum
 
-basket =  [1, 1, 2, 2, 3, 3, 4, 4, 5, 5]  #6000
-print(min(total(basket)))
+# basket =  [1, 1, 2, 2, 3, 3, 4, 4, 5, 5]  #6000
+# print(min(total(basket)))
 
 
 
