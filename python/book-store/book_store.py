@@ -16,14 +16,13 @@ PRICES = {
 DISCOUNT = [0, 0.05, 0.10, 0.2, 0.25]
 
 def total(basket:list) -> int:
-	# _bk_cnt = len(basket)
+	if not bool(basket):
+		return 0
 	_unq_bk_cnt = len(set(basket))
 
 	groups = []
-	#need a function that can find out the other groupings with CWR
 	for x in range(1, _unq_bk_cnt+1):
 		for bsk_1 in cb(basket, x):
-
 			# if sum(bsk_1) == _bk_cnt:
 			bsk_1 = list(bsk_1)
 			bsk_2 = basket.copy()
@@ -62,9 +61,11 @@ def calc_basket_remain(bsk:list) -> int:
 	return sum(bsk_total)
 
 
-# basket =  [1, 1, 2, 2, 3, 3, 4, 4, 5, 5]  #6000
+basket =  [1, 1, 2, 2, 3, 3, 4, 4, 5, 5]  #6000
 # basket =  [1, 1, 2, 2, 3, 3, 4, 5]  #5120
 # basket = [1, 1, 2, 2, 3, 3, 4, 5, 1, 1, 2, 2, 3, 3, 4, 5] #10240
+# basket = []
+
 print(total(basket))
 
 
