@@ -13,29 +13,28 @@ PRICES = {
 		  4:B_PRICE*4,
 		  5:B_PRICE*5,
 		}
-DISCOUNT = [0, 0.05, 0.10, 0.15, 0.2, 0.25]
+DISCOUNT = [0, 0.05, 0.10, 0.2, 0.25]
 
 def total(basket:list) -> int:
-	_bk_cnt = len(basket)
-	_unq_bk_cnt = len(set(basket))	
+	# _bk_cnt = len(basket)
+	_unq_bk_cnt = len(set(basket))
 
 	groups = []
 	#need a function that can find out the other groupings with CWR
-	for x in range(1, _unq_bk_cnt):
+	for x in range(1, _unq_bk_cnt+1):
 		for bsk_1 in cb(basket, x):
 
-			if sum(bsk_1) == _bk_cnt:
-				bsk_1 = list(bsk_1)
-				bsk_2 = basket.copy()
-				
-				for item in bsk_1:
-					bsk_2.remove(item)
-				
-				bsk_sum = calc_basket(bsk_1) + calc_basket_remain(bsk_2)
-				#remove that set from the basket into two lists. 
-				#calculate the price of both lists and add to sums list
-
-				groups.append(int(bsk_sum))
+			# if sum(bsk_1) == _bk_cnt:
+			bsk_1 = list(bsk_1)
+			bsk_2 = basket.copy()
+			
+			for item in bsk_1:
+				bsk_2.remove(item)
+			
+			if bsk_1 == [1,2,3,4,5]:
+				print("hit it")
+			bsk_sum = calc_basket(bsk_1) + calc_basket(bsk_2)
+			groups.append(int(bsk_sum))
 
 	return min(groups)
 
@@ -56,6 +55,7 @@ def calc_basket(bsk:list) -> int:
 	
 	return bsk_sum
 
+#Earlier function for calculating the back half of a split basket.
 def calc_basket_remain(bsk:list) -> int:
 	_counts = {i:bsk.count(i) for i in bsk}
 	bsk_total = [PRICES[j] for j in _counts.values()]
@@ -63,7 +63,9 @@ def calc_basket_remain(bsk:list) -> int:
 
 
 # basket =  [1, 1, 2, 2, 3, 3, 4, 4, 5, 5]  #6000
-# print(total(basket))
+# basket =  [1, 1, 2, 2, 3, 3, 4, 5]  #5120
+# basket = [1, 1, 2, 2, 3, 3, 4, 5, 1, 1, 2, 2, 3, 3, 4, 5] #10240
+print(total(basket))
 
 
 
