@@ -31,15 +31,3 @@ def total(basket:list)->int:
 
 	total = sum([(book * 800) * DISCOUNT[book] for book in groups]) 
 	return total
-
-
-
-# basket =  [1, 1, 2, 2, 3, 3, 4, 4, 5, 5]  #6000
-# basket =  [1, 1, 2, 2, 3, 3, 4, 5]  #5120
-# basket = [1, 1, 2, 2, 3, 3, 4, 5, 1, 1, 2, 2, 3, 3, 4, 5] #10240
-# basket = []
-
-# print(total(basket))
-
-# %%
-
