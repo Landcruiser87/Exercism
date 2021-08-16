@@ -1,7 +1,7 @@
 #%%
 
 def total(basket:list)->int:
-	"""[Function for calculating lowest combination of books.\n
+	"""[Function for calculating lowest cost combination of books.\n
 		Thought process.\n
 		1.  Reduce basket to its unique components until nothing is left.
 		2.  Eliminate edge cases (4&4 cheaper than 5&3)
