@@ -27,3 +27,4 @@ class Luhn:
 		odd_nums = sum([int(x) for x in self.card_num[0::2]])
 		#Put em together, divide by 10 and return the boolean. 
 		return (luhn + odd_nums) % 10 == 0
+
