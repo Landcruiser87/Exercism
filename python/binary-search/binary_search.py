@@ -1,5 +1,17 @@
 
 def find(search_list, value):
+	"""[finding things]
+
+	Args:
+		search_list ([list]): [list of sorted int values]
+		value ([int]): [Value we're lookin for]
+
+	Raises:
+		ValueError: [If it doesn't find the value, hello error]
+
+	Returns:
+		[int]: [index of value in search_list]
+	"""
 	if len(search_list) == 0:
 		raise ValueError("Item not in list or list is empty")
 	
@@ -13,7 +25,19 @@ def find(search_list, value):
 		return find(search_list[mid_idx+1:], value) + mid_idx + 1
 
 
-# def find(search_list, value):
+# def find(search_list:list, value:int)->int:
+# 	"""[finding things]
+
+# 	Args:
+# 		search_list ([list]): [list of sorted int values]
+# 		value ([int]): [Value we're lookin for]
+
+# 	Raises:
+# 		ValueError: [If it doesn't find the value, hello error]
+
+# 	Returns:
+# 		[int]: [index of value in search_list]
+# 	"""
 # 	if len(search_list) == 0:
 # 		raise ValueError("Item not in list or list is empty")
 	
@@ -26,9 +50,3 @@ def find(search_list, value):
 # 			right = right - 1
 # 		elif value > search_list[mid_idx]:
 # 			left = left + 1
-
-
-# search_list = [1, 3, 4, 6, 8, 9, 11]
-# value = 5
-
-# print(find(search_list, value))
