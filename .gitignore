@@ -9,5 +9,8 @@
 \teams\.pytest_cache*
 \teams\.vscode*
 
+*__pycache__*
+\.exercism_venv*
+
 
 \teams\teams\john-santerre-center-for-students-who-can-t-program-good-and-wanna-learn-to-do-other-stuff-good-too\python\.pytest_cache*

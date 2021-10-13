@@ -1,5 +1,5 @@
 {
-	"python.pythonPath": "C:\\Users\\andyh\\Anaconda3\\envs\\miner\\python.exe",
+	"python.pythonPath": "C:\\githubrepo\\Exercism\\.exercism_venv\\Scripts\\python.exe",
 	"python.testing.pytestArgs": [
         "."
     ],
