@@ -108,3 +108,17 @@ class BowlingGame:
 				_frameidx += 2
 
 		return _score
+
+# import unittest
+
+# class BowlingTest(unittest.TestCase):
+#     def roll_new_game(self, rolls):
+#         game = BowlingGame()
+#         for roll in rolls:
+#             game.roll(roll)
+#         return game
+#     def test_two_rolls_in_a_frame_cannot_score_more_than_10_points(self):
+#         rolls = [5]
+#         game = self.roll_new_game(rolls)
+#         with self.assertRaisesWithMessage(Exception):
+#             game.roll(6)
