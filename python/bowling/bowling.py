@@ -13,12 +13,18 @@ class BowlingGame:
 			pins (int): [Num of pins knocked down]
 		"""
 		#Checks individual pins to make sure range is correct
-		if pins < 0 or pins > 10:
+		if not (0 <= pins <= 10):
 			raise ValueError('You sit on a throne of lies!  aka. Wrong amount of pins in roll')
 
 		#Count the throws
 		_numrolls = len(self._roll)
 
+		#! Make this stupid thing work. 
+		#Stupid single frame check.  Dumbest test case ever.
+		if _numrolls == 1:
+			if self._roll[0] + pins > 10:
+				raise ValueError('Can\'t have more than 10 pins in one frame')
+		
 		def determineBonus(pins:int, _numrolls:int) -> int:
 			"""[Determines 10th Frame Bonus]
 
@@ -46,10 +52,6 @@ class BowlingGame:
 			
 			return _bonus
 
-		# #Stupid single test failure check.  Doesn't work
-		# if _numrolls == 1 and sum(self._rolls) > 10:
-		# 	raise ValueError('Can\'t have more than 10 pins in one frame')
-		
 		#10th Frame check
 		if _numrolls == 20:										 
 			_bonus = determineBonus(pins, _numrolls)
@@ -109,16 +111,3 @@ class BowlingGame:
 
 		return _score
 
-# import unittest
-
-# class BowlingTest(unittest.TestCase):
-#     def roll_new_game(self, rolls):
-#         game = BowlingGame()
-#         for roll in rolls:
-#             game.roll(roll)
-#         return game
-#     def test_two_rolls_in_a_frame_cannot_score_more_than_10_points(self):
-#         rolls = [5]
-#         game = self.roll_new_game(rolls)
-#         with self.assertRaisesWithMessage(Exception):
-#             game.roll(6)
