@@ -1,5 +1,3 @@
-import os
-
 def capitalize_title(title):
 	"""
 
@@ -20,7 +18,7 @@ def check_sentence_ending(sentence):
 		return True
 	else:
 		return False
-	pass
+
 
 
 def clean_up_spacing(sentence):
