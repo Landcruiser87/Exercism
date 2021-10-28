@@ -66,4 +66,3 @@ def scalene(sides):
 	"""
 
 	return len(set(sides)) == 3
-
