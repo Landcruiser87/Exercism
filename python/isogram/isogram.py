@@ -1,3 +1,3 @@
 def is_isogram(string):
-	string = [x for x in string.lower() if x.isalpha()]
+	string = [x.lower() for x in string if x.isalpha()]
 	return len(string) == len(set(string))
