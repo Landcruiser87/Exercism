@@ -12,7 +12,7 @@ def largest(min_factor, max_factor):
 		return (None, [])
 	else:
 		return (result[-1][0],[sorted(res[1]) for res in result if res[0]==result[-1][0]])
-		
+
 def smallest(min_factor, max_factor):
 	"""Given a range of numbers, find the smallest palindromes which
 	are products of two numbers within that range.
@@ -48,7 +48,7 @@ def product_piler(min_factor:int, max_factor:int)->dict:
 			if is_palindrome(num):
 				res.append((num, [x, y]))
 	return sorted(res, key=lambda x: x[0])
-	
+
 def is_palindrome(num:int)->bool:
 	"""[Checks if number is palindrome]
 
@@ -58,7 +58,6 @@ def is_palindrome(num:int)->bool:
 	Returns:
 		bool: [Whether its a palindrome]
 	"""	
-	if str(num) == str(num)[::-1]:
-		return True
-	else:
-		return False
+	return str(num) == str(num)[::-1]
+
+	print(smallest(1, 9))
