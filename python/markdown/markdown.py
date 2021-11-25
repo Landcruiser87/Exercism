@@ -16,7 +16,7 @@ def header_parse(text:str)->str:
 	return None
 
 def bold_parse(text:str)->str:
-	"""[regext check for bold]
+	"""[regex check for bold]
 
 	Args:
 		text (str): [Markdown text]
@@ -78,10 +78,10 @@ def parse(markdown:str)->str:
 	"""[Parses Markdown text into HTML tags]
 
 	Args:
-		markdown ([str]): [Markdown formatted]
+		markdown ([str]): [Markdown text]
 
 	Returns:
-		[str]: [HTML formatted]
+		[str]: [HTML text]
 	"""	
 	#split lines
 	lines = markdown.split('\n')
