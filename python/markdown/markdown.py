@@ -1,103 +1,117 @@
 import re
+def header_parse(text:str)->str:
+	"""[regex check for headers]
 
+	Args:
+		text (str): [Markdown text]
 
-def parse(markdown):
-	lines = markdown.split('\n') #Split on newline
-	res = ''
-	#Empty lists
-	in_list = False
-	in_list_append = False
-	#Step through line splits matching characters
-	#Looking for h1, h2, h6 tags?
-	for i in lines:
-		if re.match('###### (.*)', i) is not None:
-			i = '<h6>' + i[7:] + '</h6>'
-		elif re.match('## (.*)', i) is not None:
-			i = '<h2>' + i[3:] + '</h2>'
-		elif re.match('# (.*)', i) is not None:
-			i = '<h1>' + i[2:] + '</h1>'
-		m = re.match(r'\* (.*)', i)
-		#If there's a match.  
-		if m:
-			if not in_list:
-				in_list = True
-				is_bold = False
-				is_italic = False
-				curr = m.group(1)
-				m1 = re.match('(.*)__(.*)__(.*)', curr)
-				if m1:
-					curr = m1.group(1) + '<strong>' + \
-						m1.group(2) + '</strong>' + m1.group(3)
-					is_bold = True
-				m1 = re.match('(.*)_(.*)_(.*)', curr)
-				if m1:
-					curr = m1.group(1) + '<em>' + m1.group(2) + \
-						'</em>' + m1.group(3)
-					is_italic = True
-				i = '<ul><li>' + curr + '</li>'
-			else:
-				is_bold = False
-				is_italic = False
-				curr = m.group(1)
-				m1 = re.match('(.*)__(.*)__(.*)', curr)
-				if m1:
-					is_bold = True
-				m1 = re.match('(.*)_(.*)_(.*)', curr)
-				if m1:
-					is_italic = True
-				if is_bold:
-					curr = m1.group(1) + '<strong>' + \
-						m1.group(2) + '</strong>' + m1.group(3)
-				if is_italic:
-					curr = m1.group(1) + '<em>' + m1.group(2) + \
-						'</em>' + m1.group(3)
-				i = '<li>' + curr + '</li>'
+	Returns:
+		str: [HTML text]
+	"""	
+	_headers = ['#', '##', '###', '####', '#####', '######']
+	for i in _headers:
+		if re.match(f'{i} (.*)', text) is not None:
+			_hlength = len(i)
+			return f'<h{_hlength}>' + text[_hlength + 1:] +  f'</h{_hlength}>' 
+	return None
+
+def bold_parse(text:str)->str:
+	"""[regext check for bold]
+
+	Args:
+		text (str): [Markdown text]
+
+	Returns:
+		str: [HTML text]
+	"""	
+	m = re.match('(.*)__(.*)__(.*)', text)
+	if m is not None:
+		return m.group(1) + '<strong>' + m.group(2) + '</strong>' + m.group(3)
+	return text
+
+def italic_parse(text:str)->str:
+	"""[regex check for italics]
+
+	Args:
+		text (str): [Markdown text]
+
+	Returns:
+		str: [HTML text]
+	"""	
+	m = re.match('(.*)_(.*)_(.*)', text)
+	if m is not None:
+		return m.group(1) + '<em>' + m.group(2) + '</em>' + m.group(3)
+	return text
+
+def list_parse(text:str, inlist:bool)->(str, bool):
+	"""[Parses list]
+
+	Args:
+		text (str): [Input line item of markdown]
+		inlist (bool): [Whether or not currently in a list]
+
+	Returns:
+		str: [HTML formatted list item]
+		bool: [Whether item is in list still]
+	"""	
+	#Check the beginning for asterisk
+	start_bool = text.startswith('*')
+	
+	if start_bool:
+		#If it is a list item, check if already in list
+		if inlist:
+			return '<li>' + text[2:] + '</li>', True
+		
 		else:
-			if in_list:
-				in_list_append = True
-				in_list = False
+			#Means beginning of list
+			in_list = True
+			return '<ul><li>' + text[2:] + '</li>', in_list
+	else:
+		if inlist:
+			#Means end of list
+			return '</ul>' + text, False
+		else:
+			return text, inlist
+	
+##Converts a markdown string to HTML
+def parse(markdown:str)->str:
+	"""[Parses Markdown text into HTML tags]
 
-		m = re.match('<h|<ul|<p|<li', i)
-		if not m:
-			i = '<p>' + i + '</p>'
-		m = re.match('(.*)__(.*)__(.*)', i)
-		if m:
-			i = m.group(1) + '<strong>' + m.group(2) + '</strong>' + m.group(3)
-		m = re.match('(.*)_(.*)_(.*)', i)
-		if m:
-			i = m.group(1) + '<em>' + m.group(2) + '</em>' + m.group(3)
-		if in_list_append:
-			i = '</ul>' + i
-			in_list_append = False
-		res += i
-	if in_list:
+	Args:
+		markdown ([str]): [Markdown formatted]
+
+	Returns:
+		[str]: [HTML formatted]
+	"""	
+	#split lines
+	lines = markdown.split('\n')
+	#Set up variables
+	res, inlist = '', False
+	#Iterate through each line
+	for i in lines:
+		#Parse for headers
+		m = header_parse(i)
+		if m is not None:
+			res += m
+			continue
+		#Parse for lists
+		m, inlist = list_parse(i, inlist)
+		#Parse for bold
+		m = bold_parse(m)
+		#Parse for italics
+		m = italic_parse(m)
+		#If it doesn't find relevant tags, adds paragraph tags
+		r = re.match('<h|<ul|<p|<li', m)
+		if not r:
+			#If its the end of the list, wraps the end list tag correctly
+			if m.startswith("</ul>"):
+				m = m[:5] + '<p>' + m[5:] + '</p>'
+			else:
+				m = '<p>' + m + '</p>'
+			res += m
+			continue
+		res += m
+	#If the last line was a list, wrap it up
+	if inlist:
 		res += '</ul>'
 	return res
-
-import unittest
-
-
-class MarkdownTest(unittest.TestCase):
-	def test_parses_normal_text_as_a_paragraph(self):
-		self.assertEqual(
-			parse("This will be a paragraph"), "<p>This will be a paragraph</p>"
-		)
-
-	def test_parsing_italics(self):
-		self.assertEqual(
-			parse("_This will be italic_"), "<p><em>This will be italic</em></p>"
-		)
-
-	def test_parsing_bold_text(self):
-		self.assertEqual(
-			parse("__This will be bold__"), "<p><strong>This will be bold</strong></p>"
-		)
-
-	def test_mixed_normal_italics_and_bold_text(self):
-		self.assertEqual(
-			parse("This will _be_ __mixed__"),
-			"<p>This will <em>be</em> <strong>mixed</strong></p>",
-		)
-
-if __name__ == "__main__":
-	unittest.main()
