@@ -11,4 +11,4 @@ def is_valid(isbn:str)->bool:
 	for x in isbn:
 		if x.isdigit() == False:
 			return False
-	return sum(int(i) * (10 - j) for j, i in enumerate(list(isbn))) % 11 == 0
+	return sum(int(i) * (10 - j) for j, i in enumerate(isbn)) % 11 == 0
