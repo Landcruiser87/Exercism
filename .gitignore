@@ -10,6 +10,7 @@
 \teams\.vscode*
 
 *__pycache__*
+*.exercism*
 \.exercism_venv*
 
 
