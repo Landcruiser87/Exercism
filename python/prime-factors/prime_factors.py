@@ -16,5 +16,3 @@ def factors(value: int) -> list:
 			value = value / i
 		i += 1			
 	return factors
-
-print(factors(27))
