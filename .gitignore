@@ -12,6 +12,7 @@
 *__pycache__*
 *.exercism*
 \.exercism_venv*
-
+.source*
+.vscode*
 
 \teams\teams\john-santerre-center-for-students-who-can-t-program-good-and-wanna-learn-to-do-other-stuff-good-too\python\.pytest_cache*
