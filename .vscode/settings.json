@@ -1,8 +1,0 @@
-{
-	"python.pythonPath": "C:\\githubrepo\\Exercism\\.exercism_venv\\Scripts\\python.exe",
-	"python.testing.pytestArgs": [
-        "."
-    ],
-	"python.testing.pytestEnabled": true,
-	"git.ignoreLimitWarning": true
-}
